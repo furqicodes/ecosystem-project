@@ -1,23 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DayNightCycle : MonoBehaviour
 {
 
     private Light sun;
 
-    public float secondsInFullDay;
-    [Range(0, 1)]
-    public float currentTimeOfDay = 0;
+    private float currentTimeOfDay;
     private float timeMultiplier;
-    float sunInitialIntensity;
+    private float sunInitialIntensity;
 
 
 
     void Start()
     {
-        secondsInFullDay = GameObject.Find("gameManager").GetComponent<Game_Manager>().dayLength;
         timeMultiplier = GameObject.Find("gameManager").GetComponent<Game_Manager>().timeMultiplier;
 
         sun = GetComponent<Light>();
@@ -29,16 +24,11 @@ public class DayNightCycle : MonoBehaviour
     {
         UpdateSun();
 
-        currentTimeOfDay += (Time.deltaTime / secondsInFullDay) * timeMultiplier;
-
-        if (currentTimeOfDay >= 1)
-        {
-            currentTimeOfDay = 0;
-        }
     }
 
     void UpdateSun()
     {
+        currentTimeOfDay = GameObject.Find("gameManager").GetComponent<Game_Manager>().currentTimeOfDay;
         sun.transform.localRotation = Quaternion.Euler((currentTimeOfDay * 360f) - 90, 170, 0);
 
         float intensityMultiplier = 1;
