@@ -8,6 +8,9 @@ public class Game_Manager : MonoBehaviour
     public GameObject ground;
 
     public float worldScale = 1f;
+    public float dayLength;
+    [Range(0, 5)]
+    public float timeMultiplier = 1f;
 
     void Awake()
     {

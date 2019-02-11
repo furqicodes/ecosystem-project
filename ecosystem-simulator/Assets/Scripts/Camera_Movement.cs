@@ -13,4 +13,16 @@ public class Camera_Movement : MonoBehaviour
 
     }
 
+    void Update()
+    {
+        transform.Translate(Input.GetAxisRaw("Horizontal") * Time.deltaTime * 5, 0, 0);
+        transform.Translate(0, Input.GetAxisRaw("Vertical") * Time.deltaTime * 5, 0);
+
+        if (Input.GetKey(KeyCode.Q))
+            gameObject.GetComponent<Camera>().orthographicSize += 5 * Time.deltaTime;
+
+        if (Input.GetKey(KeyCode.E))
+            gameObject.GetComponent<Camera>().orthographicSize -= 5 * Time.deltaTime;
+    }
+
 }
