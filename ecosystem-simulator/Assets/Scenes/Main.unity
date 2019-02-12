@@ -260,6 +260,8 @@ MonoBehaviour:
   cam: {fileID: 5637176923667436411, guid: 2d3f74b6c8436494c9c01ab337c81801, type: 3}
   ground: {fileID: 5419904238974512104, guid: 546f832a0e9e84b0481189baf7b9131f, type: 3}
   plant: {fileID: 8248646020324413453, guid: 20b816936a8b447d7951f360f6979f6a, type: 3}
+  herbivore: {fileID: 502151673165330371, guid: d2a2994095316448e9022487e82e361a,
+    type: 3}
   worldScale: 1
   dayLength: 30
   seasonLengthInDays: 3

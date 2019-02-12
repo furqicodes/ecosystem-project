@@ -3,9 +3,12 @@
 public class Game_Manager : MonoBehaviour
 {
     public Camera cam;
+
     public GameObject ground;
     public GameObject plant;
+    public GameObject herbivore;
     private GameObject plants;
+    private GameObject animals;
 
     public float worldScale = 1f;
     public float dayLength;
@@ -37,7 +40,8 @@ public class Game_Manager : MonoBehaviour
     private void Start()
     {
         plants = new GameObject("Plants");
-        GenerateObject(plant, (int)(populationDensity * maxPopulation));
+        animals = new GameObject("Animals");
+        GenerateObject(plant, (int)(populationDensity * maxPopulation), 0.15f);
         plantCount = GameObject.FindGameObjectsWithTag("Plant").Length;
 
     }
@@ -59,6 +63,11 @@ public class Game_Manager : MonoBehaviour
             Season();
         }
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GenerateObject(herbivore, 1, 0.5f);
+        }
+
 
     }
 
@@ -69,28 +78,32 @@ public class Game_Manager : MonoBehaviour
         populationDensity = populationDensity * (1 - populationDensity) * fertilityRate;
         int k = (int)(populationDensity * maxPopulation);
         if (plantCount < k)
-            GenerateObject(plant, k - plantCount);
+            GenerateObject(plant, k - plantCount, 0.15f);
 
         else if (k < plantCount)
             DestroyObject("Plant", plantCount - k);
 
     }
 
-    public Vector3 PickPosition()
+    public Vector3 PickPosition(float height)
     {
-        return new Vector3(Random.Range(-worldScale * 5f + 0.5f, worldScale * 5f - 0.5f), 0.15f, Random.Range(-worldScale * 5f + 0.5f, worldScale * 5f - 0.5f)); //-0.5f is for avoiding animals from falling out of world
+        return new Vector3(Random.Range(-worldScale * 5f + 0.5f, worldScale * 5f - 0.5f), height, Random.Range(-worldScale * 5f + 0.5f, worldScale * 5f - 0.5f)); //-0.5f is for avoiding animals from falling out of world
     }
 
-    void GenerateObject(GameObject obj, int repetation)
+    void GenerateObject(GameObject obj, int repetation, float height)
     {
         for (int i = 0; i < repetation; i++)
         {
-            Instantiate(obj, PickPosition(), Quaternion.identity);
+            Instantiate(obj, PickPosition(height), Quaternion.identity);
         }
 
         foreach (var item in GameObject.FindGameObjectsWithTag("Plant"))
         {
             item.transform.parent = plants.transform;
+        }
+        foreach (var item in GameObject.FindGameObjectsWithTag("Animal"))
+        {
+            item.transform.parent = animals.transform;
         }
     }
 
