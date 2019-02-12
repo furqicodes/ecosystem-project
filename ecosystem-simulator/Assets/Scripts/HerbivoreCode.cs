@@ -31,9 +31,6 @@ public class HerbivoreCode : MonoBehaviour
 
         MoveToDestination();
 
-
-
-
     }
 
 
@@ -49,7 +46,7 @@ public class HerbivoreCode : MonoBehaviour
         {
             timer = 0f;
             isWaiting = false;
-            Fun();
+            SetDestination();
         }
 
 
@@ -59,13 +56,10 @@ public class HerbivoreCode : MonoBehaviour
     {
         if (Vector3.Distance(transform.position, destination) < 0.1f)
         {
-
             if (waitProbability < 0.5f)
-            {
                 Wait(Random.Range(3f, GameObject.Find("gameManager").GetComponent<Game_Manager>().dayLength / 3));
-            }
             else
-                Fun();
+                SetDestination();
 
         }
         else if (!isWaiting)
@@ -76,7 +70,7 @@ public class HerbivoreCode : MonoBehaviour
     }
 
 
-    void Fun()
+    void SetDestination()
     {
         destination = GameObject.Find("gameManager").GetComponent<Game_Manager>().PickPosition(gameObject.transform.localScale.y / 2);
         waitProbability = Random.Range(0f, 1f);
