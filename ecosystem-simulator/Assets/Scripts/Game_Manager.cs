@@ -10,9 +10,8 @@ public class Game_Manager : MonoBehaviour
     public float worldScale = 1f;
     public float dayLength;
     public int seasonLengthInDays;
-    [HideInInspector]
     [Range(0, 5)]
-    public float timeMultiplier = 1f; //this function doesn't work properly for now
+    public float timeMultiplier = 1f;
 
     public bool day = false;
 
