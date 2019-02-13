@@ -9,7 +9,10 @@ public class HerbivoreCode : MonoBehaviour
 
     public float speed = 1.0f;
     private float waitProbability = 1f;
+    private float timeMultiplier;
     private float timer = 0f;
+    private float dayLength;
+    public float energy;
 
     public bool isWaiting = false;
 
@@ -17,18 +20,24 @@ public class HerbivoreCode : MonoBehaviour
 
     void Start()
     {
+        dayLength = GameObject.Find("gameManager").GetComponent<Game_Manager>().dayLength;
+        energy = dayLength;
         render = this.GetComponent<Renderer>();
         // pick a random color
         float k = Random.Range(0.20f, 0.40f);
         Color newColor = new Color(k, k, k, 1.0f);
         // apply it on current object's material
         render.material.color = newColor;
+        SetDestination();
     }
 
 
     void Update()
     {
-
+        float k = energy / dayLength;
+        destination.y = k / 2;
+        transform.localScale = new Vector3(k, k, k);
+        timeMultiplier = GameObject.Find("gameManager").GetComponent<Game_Manager>().timeMultiplier;
         MoveToDestination();
 
     }
@@ -39,7 +48,7 @@ public class HerbivoreCode : MonoBehaviour
         isWaiting = true;
         if (timer < waitTime)
         {
-            timer += Time.deltaTime * GameObject.Find("gameManager").GetComponent<Game_Manager>().timeMultiplier;
+            timer += Time.deltaTime * timeMultiplier;
             isWaiting = true;
         }
         else
@@ -57,23 +66,24 @@ public class HerbivoreCode : MonoBehaviour
         if (Vector3.Distance(transform.position, destination) < 0.1f)
         {
             if (waitProbability < 0.5f)
-                Wait(Random.Range(3f, GameObject.Find("gameManager").GetComponent<Game_Manager>().dayLength / 3));
+                Wait(Random.Range(3 / timeMultiplier, GameObject.Find("gameManager").GetComponent<Game_Manager>().dayLength / (3 * timeMultiplier)));
             else
                 SetDestination();
 
         }
         else if (!isWaiting)
         {
-            transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, 1f, speed * 1.5f, Time.deltaTime);
-            transform.LookAt(destination);
+            transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, 1f, speed * 1.5f * timeMultiplier, Time.deltaTime);
+
         }
     }
 
 
     void SetDestination()
     {
-        destination = GameObject.Find("gameManager").GetComponent<Game_Manager>().PickPosition(gameObject.transform.localScale.y / 2);
+        destination = GameObject.Find("gameManager").GetComponent<Game_Manager>().PickPosition(transform.localScale.y / 2);
         waitProbability = Random.Range(0f, 1f);
+        transform.LookAt(destination);
     }
 
 

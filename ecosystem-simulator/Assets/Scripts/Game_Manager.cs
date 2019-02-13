@@ -2,33 +2,40 @@
 
 public class Game_Manager : MonoBehaviour
 {
-    public Camera cam;
 
+    [Header("GameObjects")]
+    public Camera cam;
     public GameObject ground;
     public GameObject plant;
     public GameObject herbivore;
     private GameObject plants;
     private GameObject animals;
+    [Space(10)]
 
+    [Header("World Settings")]
     public float worldScale = 1f;
     public float dayLength;
     public int seasonLengthInDays;
     [Range(0, 5)]
     public float timeMultiplier = 1f;
+    [Space(10)]
 
+    [Header("World Status")]
     public bool day = false;
-
     [Range(0, 1)]
     public float currentTimeOfDay = 0;
     [Range(0, 1)]
     public float currentSeasonStatus = 0;
+    [Space(10)]
 
+    [Header("Plant Population Settings")]
     public float populationDensity;
     public float fertilityRate;
-
     public int seasonNumber = 0;
     public int maxPopulation;
     public int plantCount;
+    //[Space(10)]
+
 
     void Awake()
     {
