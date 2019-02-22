@@ -12,4 +12,6 @@ Future improvements:
 - Carnivores will be added.
 - Hunting algorithm will be added.
 
+OneNote link to the project sketches: https://1drv.ms/u/s!As9B1AeA9xZvh2pnYBNKfFDQv-ia
+
 **Please note that all entities are basically cubes for now. But I really appreciate any 3D model contribution**
