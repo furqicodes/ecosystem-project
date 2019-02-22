@@ -12,8 +12,10 @@ GameObject:
   - component: {fileID: 502151673165330367}
   - component: {fileID: 502151673165330364}
   - component: {fileID: 502151673165330365}
-  - component: {fileID: 502151673165330370}
   - component: {fileID: 2344316054968020271}
+  - component: {fileID: 654817201954761600}
+  - component: {fileID: 2412542566282785202}
+  - component: {fileID: 6679277049922497005}
   m_Layer: 0
   m_Name: Herbivore
   m_TagString: Animal
@@ -93,22 +95,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &502151673165330370
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 502151673165330371}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b814e416887bd4b90bf622f32ad8627e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destination: {x: 0, y: 0.5, z: 0}
-  speed: 1
-  energy: 0
-  isWaiting: 0
 --- !u!54 &2344316054968020271
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -125,3 +111,48 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &654817201954761600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 502151673165330371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 669b111f9718b458b9527acd8c016f68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  consumptionBase: 1
+  energy: 0
+  consumptionMultiplier: 0
+--- !u!114 &2412542566282785202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 502151673165330371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 018d2f5766afd4aab99259cf7a49e67f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  starvingPoint: 1
+  hungerBar: 0
+  hungry: 0
+  dead: 0
+--- !u!114 &6679277049922497005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 502151673165330371}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5797d2f5df35043c7b7161d4a90accd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destination: {x: 0, y: 0, z: 0}
+  arrived: 0
