@@ -41,8 +41,6 @@ public class HerbivoreIdle : MonoBehaviour
 
     void Update()
     {
-
-        Debug.Log("fucking access");
         rb.mass = Mathf.Pow(size.x, 2);
 
         switch (state)

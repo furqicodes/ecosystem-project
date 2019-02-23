@@ -44,6 +44,7 @@ public class HerbivoreCode : MonoBehaviour
     void Wait(float waitTime)
     {
         isWaiting = true;
+        gameObject.GetComponent<HerbivoreIdle>().state = 0;
         if (timer < waitTime)
         {
             timer += Time.deltaTime * timeMultiplier;
@@ -70,6 +71,7 @@ public class HerbivoreCode : MonoBehaviour
         else
         {
             transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, 1f, speed * 1.5f * timeMultiplier, Time.deltaTime);
+            gameObject.GetComponent<HerbivoreIdle>().state = 1;
         }
     }
 
