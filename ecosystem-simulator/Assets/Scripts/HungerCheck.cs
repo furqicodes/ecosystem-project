@@ -13,6 +13,8 @@ public class HungerCheck : MonoBehaviour
 
     private void Update()
     {
+
+        hungerBar += Time.deltaTime / (GameObject.Find("gameManager").GetComponent<Game_Manager>().dayLength * 2);
         SetHunger();
         Starve();
         //TurnCorpse();
@@ -24,7 +26,7 @@ public class HungerCheck : MonoBehaviour
 
     void SetHunger()
     {
-        if (hungerBar > 0.75f)
+        if (hungerBar > 0.5f)
         {
             hungry = true;
         }

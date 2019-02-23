@@ -16,10 +16,9 @@ public class HerbivoreIdle : MonoBehaviour
     private Renderer render;
     private Rigidbody rb;
 
-    public float speed = 1.0f;
-    //private float timeMultiplier;
-    private float dayLength;
 
+    private float dayLength;
+    public bool setDestination = false;
 
     private void Start()
     {
@@ -36,19 +35,15 @@ public class HerbivoreIdle : MonoBehaviour
 
         dayLength = GameObject.Find("gameManager").GetComponent<Game_Manager>().dayLength;
 
-        SetDestination();
+
 
     }
 
     void Update()
     {
+
+        Debug.Log("fucking access");
         rb.mass = Mathf.Pow(size.x, 2);
-
-        transform.localScale = Fun(this.GetComponent<EnergyConsumption>().energy / dayLength);
-
-        //timeMultiplier = GameObject.Find("gameManager").GetComponent<Game_Manager>().timeMultiplier;
-
-        speed = size.x;
 
         switch (state)
         {
@@ -63,22 +58,12 @@ public class HerbivoreIdle : MonoBehaviour
                 break;
         }
 
-        if (gameObject.GetComponent<GoDestination>().arrived)
-        {
-            SetDestination();
-        }
+        //if (gameObject.GetComponent<GoDestination>().arrived)
+        //{
+        //    setDestination = true;
+        //}
 
 
     }
 
-    Vector3 Fun(float k)
-    {
-        return new Vector3(k, k, k);
-    }
-
-    void SetDestination()
-    {
-        gameObject.GetComponent<GoDestination>().destination = GameObject.Find("gameManager").GetComponent<Game_Manager>().PickPosition(transform.localScale.y / 2);
-        transform.LookAt(gameObject.GetComponent<GoDestination>().destination);
-    }
 }

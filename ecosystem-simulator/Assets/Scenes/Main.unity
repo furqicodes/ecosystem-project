@@ -264,7 +264,7 @@ MonoBehaviour:
     type: 3}
   worldScale: 1
   dayLength: 30
-  seasonLengthInDays: 3
+  seasonLengthInDays: 4
   timeMultiplier: 1
   day: 0
   currentTimeOfDay: 0

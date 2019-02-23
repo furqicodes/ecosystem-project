@@ -28,7 +28,11 @@ public class EnergyConsumption : MonoBehaviour
 
     private void Update()
     {
+
         energy -= timeMultiplier * consumptionMultiplier * Time.deltaTime / (gameManager.GetComponent<Game_Manager>().seasonLengthInDays * 4); //4 will be replaced with year length in seasons
+
+        gameObject.transform.localScale = new Vector3(energy / dayLength, energy / dayLength, energy / dayLength);
+
 
         //if (gameObject.GetComponent<HungerCheck>().dead)
         //{
