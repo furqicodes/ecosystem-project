@@ -56,6 +56,8 @@ public class HerbivoreIdle : MonoBehaviour
                 break;
         }
 
+        //Debug.Log(GameObject.Find("Scanbox").GetComponent<CollisionDetection>().nearestObject);
+
         //if (gameObject.GetComponent<GoDestination>().arrived)
         //{
         //    setDestination = true;
