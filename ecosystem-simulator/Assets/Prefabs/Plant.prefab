@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 8248646020324413454}
   - component: {fileID: 8248646020324413455}
   - component: {fileID: 8248646020324413452}
+  - component: {fileID: 4812444431093686529}
+  - component: {fileID: 4391303402187935388}
   m_Layer: 0
   m_Name: Plant
   m_TagString: Plant
@@ -106,3 +108,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   t: 0
   energy: 0
+--- !u!114 &4812444431093686529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8248646020324413453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a57da5e4db24b4ab9aa49202d9868894, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transferStart: 0
+  transferRate: 5
+--- !u!114 &4391303402187935388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8248646020324413453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 598bce845929e4fb48e1331fca66d2c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

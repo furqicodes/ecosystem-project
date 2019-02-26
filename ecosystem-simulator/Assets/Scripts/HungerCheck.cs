@@ -18,12 +18,15 @@ public class HungerCheck : MonoBehaviour
         SetHunger();
         Starve();
         //TurnCorpse();
-        if (gameObject.GetComponent<EnergyConsumption>().energy < 1)
-            Destroy(gameObject);
+        //if (gameObject.GetComponent<EnergyConsumption>().energy < 1)
+        //Destroy(gameObject);
 
         if (hungry)
         {
-            transform.position = Vector3.MoveTowards(transform.position, gameObject.GetComponentInChildren<CollisionDetection>().nearestObject.transform.position, 1f);
+            //transform.position = Vector3.MoveTowards(transform.position, gameObject.GetComponentInChildren<CollisionDetection>().nearestObject.transform.position, 1f);
+            gameObject.GetComponent<HerbivoreCode>().destination = gameObject.GetComponentInChildren<CollisionDetection>().nearestObject.transform.position;
+            gameObject.GetComponent<HerbivoreCode>().waitProbability = 1f;
+
         }
 
     }

@@ -266,6 +266,7 @@ MonoBehaviour:
   dayLength: 30
   seasonLengthInDays: 4
   timeMultiplier: 1
+  energyTransferRate: 5
   day: 0
   currentTimeOfDay: 0
   currentSeasonStatus: 0

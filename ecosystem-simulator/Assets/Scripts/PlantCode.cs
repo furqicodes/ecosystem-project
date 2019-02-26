@@ -22,7 +22,7 @@ public class PlantCode : MonoBehaviour
 
         transform.localScale = new Vector3(energy / dayLength, 0.3f, energy / dayLength);
 
-        if (energy < dayLength && day)
+        if (energy < dayLength * 1.5f && day)
         {
             energy += Time.deltaTime * timeMultiplier;
         }

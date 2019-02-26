@@ -7,7 +7,8 @@ public class HerbivoreCode : MonoBehaviour
     public Vector3 destination;//
 
     public float speed = 1.0f;//
-    private float waitProbability = 1f;//
+    [HideInInspector]
+    public float waitProbability = 1f;//
     private float timeMultiplier;//
     private float timer = 0f;//
     private float dayLength;//
@@ -65,7 +66,18 @@ public class HerbivoreCode : MonoBehaviour
             if (waitProbability < 0.5f)
                 Wait(Random.Range(3 / timeMultiplier, GameObject.Find("gameManager").GetComponent<Game_Manager>().dayLength / (3 * timeMultiplier)));
             else
+            {
+                if (gameObject.GetComponent<HungerCheck>().hungry && gameObject.GetComponentInChildren<CollisionDetection>().nearestObject)
+                {
+                    gameObject.GetComponent<EnergyTransfer>().transferStart = true;
+                    gameObject.GetComponentInChildren<CollisionDetection>().nearestObject.gameObject.GetComponent<EnergyTransfer>().transferStart = true;
+                }
+                else if (!gameObject.GetComponentInChildren<CollisionDetection>().nearestObject)
+                {
+                    gameObject.GetComponent<EnergyTransfer>().transferStart = true;
+                }
                 SetDestination();
+            }
 
         }
         else
@@ -80,7 +92,11 @@ public class HerbivoreCode : MonoBehaviour
     {
         destination = GameObject.Find("gameManager").GetComponent<Game_Manager>().PickPosition(transform.localScale.y / 2);
         waitProbability = Random.Range(0f, 1f);
-        transform.LookAt(destination);
+        if (!gameObject.GetComponent<HungerCheck>().hungry)
+        {
+            transform.LookAt(destination);
+
+        }
     }
 
 

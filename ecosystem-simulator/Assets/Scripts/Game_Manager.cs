@@ -18,6 +18,7 @@ public class Game_Manager : MonoBehaviour
     public int seasonLengthInDays;
     [Range(0, 5)]
     public float timeMultiplier = 1f;
+    public float energyTransferRate;
     [Space(10)]
 
     [Header("World Status")]
