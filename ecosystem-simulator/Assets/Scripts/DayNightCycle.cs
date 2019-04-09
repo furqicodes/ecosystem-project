@@ -2,49 +2,42 @@
 
 public class DayNightCycle : MonoBehaviour
 {
-
     private Light sun;
+    private World w;
+    private GameObject sunPrefab;
 
-    private float currentTimeOfDay;
-    private float timeMultiplier;
-    private float sunInitialIntensity;
-
-
-
-    void Start()
+    private void Awake()
     {
-        timeMultiplier = GameObject.Find("gameManager").GetComponent<Game_Manager>().timeMultiplier;
-
-        sun = GetComponent<Light>();
-
-        sunInitialIntensity = sun.intensity;
+        sunPrefab = Resources.Load("Sun") as GameObject;
+        w = GameObject.Find("gameManager").GetComponent<World>();
+        sun = Instantiate(sunPrefab, new Vector3(0, 3, 0), Quaternion.identity).GetComponent<Light>();
     }
 
-    void Update()
+    private void Update()
     {
-        UpdateSun();
-
-    }
-
-    void UpdateSun()
-    {
-        currentTimeOfDay = GameObject.Find("gameManager").GetComponent<Game_Manager>().currentTimeOfDay;
-        sun.transform.localRotation = Quaternion.Euler((currentTimeOfDay * 360f) - 90, 170, 0);
+        w.setCurrentTimeOfDay(w.getCurrentTimeOfDay() + 1f * Time.deltaTime * w.getTimeMultiplier());
+        float k = (w.getCurrentTimeOfDay() % w.getDayLengthInSeconds()) / w.getDayLengthInSeconds();
+        sun.transform.localRotation = Quaternion.Euler(((k * 360f) - 90f), 170, 0);
 
         float intensityMultiplier = 1;
-        if (currentTimeOfDay <= 0.23f || currentTimeOfDay >= 0.75f)
+        if (k <= 0.23f || k >= 0.75f)
         {
             intensityMultiplier = 0;
+            w.setDay(false);
         }
-        else if (currentTimeOfDay <= 0.25f)
+        else if (k <= 0.25f)
         {
-            intensityMultiplier = Mathf.Clamp01((currentTimeOfDay - 0.23f) * (1 / 0.02f));
+            intensityMultiplier = Mathf.Clamp01((k - 0.23f) * (1 / 0.02f));
+            w.setDay(true);
         }
-        else if (currentTimeOfDay >= 0.73f)
+        else if (k >= 0.73f)
         {
-            intensityMultiplier = Mathf.Clamp01(1 - ((currentTimeOfDay - 0.73f) * (1 / 0.02f)));
+            intensityMultiplier = Mathf.Clamp01(1 - ((k - 0.73f) * (1 / 0.02f)));
+            w.setDay(true);
         }
 
-        sun.intensity = sunInitialIntensity * intensityMultiplier;
+        sun.intensity = intensityMultiplier;
+
+
     }
 }

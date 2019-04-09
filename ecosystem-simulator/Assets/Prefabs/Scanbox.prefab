@@ -1,17 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &1444337553472729241
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4820030889388286192}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56f7ac27ca7d2491b815d68d0345d492, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &4820030889388385872
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23,6 +11,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scanbox
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 0e057e215204c4d239f628a5d5ec5923, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ce9147de9cd2340fbb26408aa2916780, type: 2}
     - target: {fileID: 400000, guid: 0e057e215204c4d239f628a5d5ec5923, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.10701418
@@ -67,10 +59,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2300000, guid: 0e057e215204c4d239f628a5d5ec5923, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: ce9147de9cd2340fbb26408aa2916780, type: 2}
     - target: {fileID: 6400000, guid: 0e057e215204c4d239f628a5d5ec5923, type: 3}
       propertyPath: m_Convex
       value: 1
@@ -81,9 +69,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e057e215204c4d239f628a5d5ec5923, type: 3}
---- !u!1 &4820030889388286192 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100000, guid: 0e057e215204c4d239f628a5d5ec5923,
-    type: 3}
-  m_PrefabInstance: {fileID: 4820030889388385872}
-  m_PrefabAsset: {fileID: 0}
