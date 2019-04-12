@@ -1,30 +1,31 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Movement : Animal
+public class Movement : RandomPosition
 {
+    private float distance = Mathf.Infinity;
 
-    public bool Move(GameObject target, float normalSpeed, float run)
+
+
+    public void Move(GameObject target, float normalSpeed, float run)
     {
-        float distance = Vector3.Distance(this.transform.position, target.transform.position);
+        Vector3 targetDir = target.transform.position - this.transform.position;
+        Vector3 newDir = Vector3.RotateTowards(this.transform.forward, targetDir, 10f * Time.deltaTime, 0.0f);
+        Debug.DrawLine(this.transform.position + new Vector3(0, 0.5f, 0), target.transform.position, Color.red);
 
-        while (true)
+
+        //getRandomPosition(GameObject.Find("gameManager").GetComponent<World>().getWorldScale());
+
+        if (target.tag == "Plant" && this.getDistance(target) > 0.9f)
         {
-            Vector3.RotateTowards(this.transform.rotation.eulerAngles, target.transform.rotation.eulerAngles, run * normalSpeed * Time.deltaTime, 0f);
-            Vector3.MoveTowards(this.transform.position, target.transform.position, normalSpeed * run * Time.deltaTime);
-
-            if (distance >= 10f && target.tag == "Animal")
-            {
-                break;
-            }
-
-            if (distance < 0.1 && (target.tag == "Plant" || target.tag == "Target"))
-            {
-                break;
-            }
+            this.transform.position = Vector3.MoveTowards(this.transform.position, target.transform.position, normalSpeed * run * Time.deltaTime);
+            this.transform.rotation = Quaternion.LookRotation(newDir);
         }
-        return true;
 
+    }
+
+    public float getDistance(GameObject target)
+    {
+        distance = Vector3.Distance(this.transform.position, target.transform.position);
+        return distance;
     }
 }

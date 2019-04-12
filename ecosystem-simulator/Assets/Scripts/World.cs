@@ -51,7 +51,7 @@ public class World : RandomPosition
 
         for (int i = 0; i < plantsToBeGenerated; i++)
         {
-            GameObject plant = Instantiate(plantPrefab, getRandomPosition(getWorldScale()), Quaternion.identity);
+            GameObject plant = Instantiate(plantPrefab, getRandomPosition(getWorldScale()), Quaternion.Euler(-90, 0, 0));
             plant.transform.SetParent(plants.transform);
         }
     }

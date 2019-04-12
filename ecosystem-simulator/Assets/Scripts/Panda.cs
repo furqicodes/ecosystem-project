@@ -1,28 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Panda : Animal
+public class Panda : LivingBeing
 {
-    private float hunger = 0;
+    public GameObject target;
 
-
-
-
-
-
-
-    public float getHunger()
+    private void Awake()
     {
-        return this.hunger;
+        gameObject.AddComponent<Movement>();
+        gameObject.AddComponent<LivingBeing>();
+
+        setSpeed(Random.Range(0.75f, 1.25f));
     }
 
-    public void setHunger(float hunger)
+    private void Update()
     {
-        this.hunger = hunger;
+        Movement movement = this.GetComponent<Movement>();
+        if (target)
+        {
+            movement.Move(target, getSpeed(), 1);
+        }
+
+
+
     }
-
-
 
 
 
