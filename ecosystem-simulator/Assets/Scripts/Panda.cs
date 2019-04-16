@@ -8,22 +8,16 @@ public class Panda : LivingBeing
     {
         gameObject.AddComponent<Movement>();
         gameObject.AddComponent<LivingBeing>();
-
+        gameObject.transform.GetChild(0).gameObject.AddComponent<DetectionSystem>();
         setSpeed(Random.Range(0.75f, 1.25f));
     }
 
     private void Update()
     {
+        target = gameObject.GetComponentInChildren<DetectionSystem>().getNearestObject();
         Movement movement = this.GetComponent<Movement>();
-        if (target)
-        {
-            movement.Move(target, getSpeed(), 1);
-        }
-
-
-
+        //Debug.Log(getSpeed());
     }
-
 
 
 }

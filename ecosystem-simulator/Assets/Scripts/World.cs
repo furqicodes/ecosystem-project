@@ -9,12 +9,13 @@ public class World : RandomPosition
     private GameObject groundPrefab;
     private GameObject plantPrefab;
 
-    [SerializeField]
+    //[SerializeField]
     private bool day;
+    //[SerializeField]
     private int dayCounter;
     [SerializeField]
     private int plantsToBeGenerated;
-    [SerializeField]
+    //[SerializeField]
     private float timeMultiplier;
     private int seasonLengthInDays;
     private int dayLengthInSeconds;
@@ -56,6 +57,11 @@ public class World : RandomPosition
         }
     }
 
+    private void Update()
+    {
+        dayCounter = (int)(currentTimeOfDay / dayLengthInSeconds);
+    }
+
 
     public GameObject getGroundPrefab()
     {
@@ -75,6 +81,21 @@ public class World : RandomPosition
     public bool getDay()
     {
         return this.day;
+    }
+
+    public int getDayCounter()
+    {
+        return this.dayCounter;
+    }
+
+    public int getYearLengthInSeasons()
+    {
+        return this.yearLengthInSeasons;
+    }
+
+    public int getSeasonLengthInDays()
+    {
+        return this.seasonLengthInDays;
     }
 
     public float getTimeMultiplier()
@@ -105,6 +126,11 @@ public class World : RandomPosition
     public void setGroundPrefab(GameObject obj)
     {
         this.groundPrefab = obj;
+    }
+
+    public void setTimeMultiplier(float f)
+    {
+        this.timeMultiplier = f;
     }
 
     public void setPlantPrefab(GameObject obj)

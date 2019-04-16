@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Movement : RandomPosition
 {
     private float distance = Mathf.Infinity;
-
-
+    private Vector3 destination = Vector3.zero;
+    private Vector3 velocity = Vector3.zero;
 
     public void Move(GameObject target, float normalSpeed, float run)
     {
@@ -15,7 +16,7 @@ public class Movement : RandomPosition
 
         //getRandomPosition(GameObject.Find("gameManager").GetComponent<World>().getWorldScale());
 
-        if (target.tag == "Plant" && this.getDistance(target) > 0.9f)
+        if (target.tag == "Plant" && this.getDistance(target.transform.position) > 0.9f)
         {
             this.transform.position = Vector3.MoveTowards(this.transform.position, target.transform.position, normalSpeed * run * Time.deltaTime);
             this.transform.rotation = Quaternion.LookRotation(newDir);
@@ -23,9 +24,19 @@ public class Movement : RandomPosition
 
     }
 
-    public float getDistance(GameObject target)
+    public void setDestination(Vector3 v)
     {
-        distance = Vector3.Distance(this.transform.position, target.transform.position);
+        this.destination = v;
+    }
+
+    public float getDistance(Vector3 target)
+    {
+        distance = Vector3.Distance(this.transform.position, target);
         return distance;
+    }
+
+    public Vector3 getDestination()
+    {
+        return this.destination;
     }
 }
