@@ -5,22 +5,17 @@ using UnityEngine;
 public class World : RandomPosition
 {
 
-    private GameObject plants;
     private GameObject groundPrefab;
-    private GameObject plantPrefab;
+    private GameObject forest;
 
-    //[SerializeField]
     private bool day;
-    //[SerializeField]
     private int dayCounter;
     [SerializeField]
-    private int plantsToBeGenerated;
-    //[SerializeField]
+    private int forestToBeGenerated;
     private float timeMultiplier;
     private int seasonLengthInDays;
     private int dayLengthInSeconds;
     private int yearLengthInSeasons;
-    [SerializeField]
     private float currentTimeOfDay;
     [SerializeField]
     private Vector3 worldScale;
@@ -31,7 +26,7 @@ public class World : RandomPosition
     {
         this.day = false;
         this.dayCounter = 0;
-        this.plantsToBeGenerated = 1;
+        this.forestToBeGenerated = 1;
         this.timeMultiplier = 1f;
         this.seasonLengthInDays = 4;
         this.dayLengthInSeconds = 30;
@@ -43,18 +38,22 @@ public class World : RandomPosition
 
     void Start()
     {
-        plants = new GameObject("Plants");
+        forest = new GameObject("ForestGroup");
         groundPrefab = Resources.Load("Ground") as GameObject;
-        plantPrefab = Resources.Load("Bamboo") as GameObject;
+        //plantPrefab = Resources.Load("Bamboo") as GameObject;
 
         GameObject ground = Instantiate(groundPrefab, Vector3.zero, Quaternion.identity);
         ground.transform.localScale = getWorldScale();
 
-        for (int i = 0; i < plantsToBeGenerated; i++)
+
+        for (int i = 0; i < forestToBeGenerated; i++)
         {
-            GameObject plant = Instantiate(plantPrefab, getRandomPosition(getWorldScale()), Quaternion.Euler(-90, 0, 0));
-            plant.transform.SetParent(plants.transform);
+            GameObject f = new GameObject("Forest " + i);
+            f.transform.position = getRandomPosition(getWorldScale() - new Vector3(0.2f, 0.2f, 0.2f));
+            //f.transform.SetParent(forest.transform);
+            f.AddComponent<Forest>();
         }
+
     }
 
     private void Update()
@@ -68,14 +67,9 @@ public class World : RandomPosition
         return this.groundPrefab;
     }
 
-    public GameObject getPlantPrefab()
+    public int getForestToBeGenerated()
     {
-        return this.plantPrefab;
-    }
-
-    public int getPlantsToBeGenerated()
-    {
-        return this.plantsToBeGenerated;
+        return this.forestToBeGenerated;
     }
 
     public bool getDay()
@@ -131,11 +125,6 @@ public class World : RandomPosition
     public void setTimeMultiplier(float f)
     {
         this.timeMultiplier = f;
-    }
-
-    public void setPlantPrefab(GameObject obj)
-    {
-        this.plantPrefab = obj;
     }
 
     public void setDay(bool set)

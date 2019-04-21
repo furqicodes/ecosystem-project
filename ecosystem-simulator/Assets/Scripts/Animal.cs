@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LivingBeing : MonoBehaviour
+public class LivingBeing : RandomPosition
 {
     private float speed;
 
@@ -15,7 +15,6 @@ public class LivingBeing : MonoBehaviour
 
 
     }
-
 
     public void setSpeed(float s)
     {

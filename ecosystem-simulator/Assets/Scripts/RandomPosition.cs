@@ -18,4 +18,9 @@ public class RandomPosition : MonoBehaviour
         return this.randomPosition;
     }
 
+    public Vector3 getRandomInRadius(float radius)
+    {
+        return new Vector3(Random.insideUnitSphere.x * radius, 0, Random.insideUnitSphere.z * radius);
+    }
+
 }

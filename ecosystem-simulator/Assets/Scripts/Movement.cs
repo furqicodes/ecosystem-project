@@ -7,7 +7,7 @@ public class Movement : RandomPosition
     private Vector3 destination = Vector3.zero;
     private Vector3 velocity = Vector3.zero;
 
-    public void Move(GameObject target, float normalSpeed, float run)
+    public int Move(GameObject target, float normalSpeed, float run)
     {
         Vector3 targetDir = target.transform.position - this.transform.position;
         Vector3 newDir = Vector3.RotateTowards(this.transform.forward, targetDir, 10f * Time.deltaTime, 0.0f);
@@ -16,10 +16,15 @@ public class Movement : RandomPosition
 
         //getRandomPosition(GameObject.Find("gameManager").GetComponent<World>().getWorldScale());
 
-        if (target.tag == "Plant" && this.getDistance(target.transform.position) > 0.9f)
+        if ((target.tag == "Plant" || target.tag == "Forest") && this.getDistance(target.transform.position) > 0.9f)
         {
             this.transform.position = Vector3.MoveTowards(this.transform.position, target.transform.position, normalSpeed * run * Time.deltaTime);
             this.transform.rotation = Quaternion.LookRotation(newDir);
+            return 0;
+        }
+        else
+        {
+            return 1;
         }
 
     }
